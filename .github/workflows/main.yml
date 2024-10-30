@@ -3,7 +3,7 @@ name: Build LaTeX PDF
 on:
   push:
     branches:
-      - pdf  # Triggers on pushes to the main branch
+      - main  # Triggers on pushes to the main branch
   pull_request:
     branches:
       - main  # Triggers on pull requests to the main branch
