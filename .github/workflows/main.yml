@@ -24,10 +24,30 @@ jobs:
         with:
           root_file: main.tex  # Change to the path of your main .tex file
           compiler: xelatex  # Specify xelatex as the compiler
-          pre_compile: |
-            sudo apt-get update
-            sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-science
-            sudo apt-get install -y fonts-font-awesome
+          extra_packages: |
+            latexsym
+            xcolor
+            float
+            ragged2e
+            fullpage
+            wrapfig
+            lipsum
+            tabularx
+            titlesec
+            geometry
+            marvosym
+            verbatim
+            enumitem
+            hyperref
+            fancyhdr
+            fontawesome5
+            multicol
+            graphicx
+            fontenc
+            academicons
+            multirow
+            tcolorbox
+            # Add any other packages used in your .tex file
         
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v4.4.3
