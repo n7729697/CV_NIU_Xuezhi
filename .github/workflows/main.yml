@@ -43,11 +43,10 @@ jobs:
           name: cv
           path: main.pdf
       
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v4.1.8
+      - name: Push
+        uses: crazy-max/ghaction-github-pages@v3
         with:
-          name: cv
-          path: pdf
-          
-      - name: Display structure of downloaded files
-        run: ls -R
+          target_branch: pdf
+          build_dir: pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
