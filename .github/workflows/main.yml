@@ -47,6 +47,7 @@ jobs:
         uses: actions/download-artifact@v4.1.8
         with:
           name: cv
+          path: pdf
           
       - name: Display structure of downloaded files
         run: ls -R
