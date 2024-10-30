@@ -25,28 +25,17 @@ jobs:
           root_file: main.tex  # Change to the path of your main .tex file
           compiler: xelatex  # Specify xelatex as the compiler
           extra_packages: |
-            latexsym
-            xcolor
-            float
-            ragged2e
-            fullpage
-            wrapfig
-            lipsum
             tabularx
             titlesec
             geometry
-            marvosym
-            verbatim
             enumitem
             hyperref
             fancyhdr
             fontawesome5
             multicol
-            graphicx
             fontenc
             academicons
             multirow
-            tcolorbox
             # Add any other packages used in your .tex file
 
       - name: Move compiled PDF to designated folder
