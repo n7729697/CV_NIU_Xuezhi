@@ -3,16 +3,15 @@ name: Build LaTeX PDF
 on:
   push:
     branches:
-      - main  # Triggers on pushes to the main branch
+      - pdf  # Triggers on pushes to the main branch
   pull_request:
     branches:
       - main  # Triggers on pull requests to the main branch
 
 jobs:
   build-pdf:
-    runs-on: ubuntu-latest
-                
-            
+    permissions: write-all
+    runs-on: ubuntu-lates
     steps:
       # Checkout the repository
       - name: Checkout repository
@@ -43,6 +42,7 @@ jobs:
         with:
           name: cv
           path: main.pdf
+      
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4.1.8
         with:
