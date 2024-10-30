@@ -24,22 +24,13 @@ jobs:
         with:
           root_file: main.tex  # Change to the path of your main .tex file
           compiler: xelatex  # Specify xelatex as the compiler
-          extra_packages: |
-            tabularx
-            titlesec
-            geometry
-            enumitem
-            hyperref
-            fancyhdr
-            fontawesome5
-            multicol
-            fontenc
-            academicons
-            multirow
-            # Add any other packages used in your .tex file
+          pre_compile: |
+            sudo apt-get update
+            sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-science
+            sudo apt-get install -y fonts-font-awesome
 
       - name: move
-        run: mkdir -p github_artifacts && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/
+        run: mkdir -p github_artifacts && mv main.pdf ./github_artifacts/
         
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v4.4.3
