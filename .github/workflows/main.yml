@@ -23,6 +23,7 @@ jobs:
         uses: xu-cheng/latex-action@3.2.0
         with:
           root_file: main.tex  # Change to the path of your main .tex file
+          compiler: xelatex  # Specify xelatex as the compiler
           extra_packages: |
             latexsym
             xcolor
