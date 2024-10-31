@@ -15,7 +15,7 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
 
       # Set up TeX Live with additional packages
       - name: Set up TeX Live
@@ -62,11 +62,11 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
-          source_file: 'CV_NIU_Xuezhi.pdf'
+          source-file: 'CV_NIU_Xuezhi.pdf'
           destination-repository: 'n7729697.github.io'
           destination-directory: 'files/'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
           commit-email: '59921684+n7729697@users.noreply.github.com' 
           destination-username: 'n7729697'
-          commit_message: 'update cv pdf'
+          commit-message: 'update cv pdf'
           # git_server: "github.com"
