@@ -53,6 +53,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: n7729697/n7729697.github.io
-          url: https://github.com/n7729697/n7729697.github.io
+          repository: 'n7729697/n7729697.github.io'
+          github_url: https://github.com/n7729697/n7729697.github.io
           force_with_lease: true
