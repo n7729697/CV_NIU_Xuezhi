@@ -43,28 +43,28 @@ jobs:
           mkdir -p files
           mv main.pdf CV_NIU_Xuezhi.pdf
 
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git add CV_NIU_Xuezhi.pdf
-      #     git commit -a -m "update cv pdf"
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add CV_NIU_Xuezhi.pdf
+          git commit -a -m "update cv pdf"
           
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.PAT_TOKEN }}
-      #     repository: 'n7729697/n7729697.github.io'
-      #     force_with_lease: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
+          repository: 'n7729697/n7729697.github.io'
+          force_with_lease: true
           
       - name: Pushes file to website folder
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
-          source_file: 'CV_NIU_Xuezhi.pdf'
+          source_file: 'files/CV_NIU_Xuezhi.pdf'
           destination_repo: 'n7729697/n7729697.github.io'
-          destination_folder: '/files/'
+          destination_folder: 'files/'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
           user_email: '59921684+n7729697@users.noreply.github.com' 
           user_name: 'n7729697'
