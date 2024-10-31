@@ -43,19 +43,19 @@ jobs:
           mkdir -p files
           mv main.pdf CV_NIU_Xuezhi.pdf
 
-      - name: Commit files
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add CV_NIU_Xuezhi.pdf
-          git commit -a -m "update cv pdf"
+      # - name: Commit files
+      #   run: |
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add CV_NIU_Xuezhi.pdf
+      #     git commit -a -m "update cv pdf"
           
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT_TOKEN }}
-          repository: 'n7729697/n7729697.github.io'
-          force_with_lease: true
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.PAT_TOKEN }}
+      #     repository: 'n7729697/n7729697.github.io'
+      #     force_with_lease: true
           
       - name: Pushes file to website folder
         uses: dmnemec/copy_file_to_another_repo_action@main
