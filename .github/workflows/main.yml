@@ -36,16 +36,22 @@ jobs:
             academicons
             multirow
             # Add any other packages used in your .tex file
-      
+      # Prepare the PDF for the target repository's subfolder
+      - name: Move PDF to subfolder path
+        run: |
+          mkdir -p file
+          mv main.pdf file/CV_NIU_Xuezhi.pdf
+
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add main.pdf
-          git commit -a -m "Add changes"
+          git add file/CV_NIU_Xuezhi.pdf
+          git commit -a -m "update"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          github_token: ${{ secrets.PAT_TOKEN }}
+          repository: n7729697/n7729697.github.io
+          force_with_lease: true
