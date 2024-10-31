@@ -39,7 +39,7 @@ jobs:
       # Prepare the PDF for the target repository's subfolder
       - name: Move PDF to subfolder path
         run: |
-          mkdir -p file
+          mkdir -p files
           mv main.pdf files/CV_NIU_Xuezhi.pdf
 
       - name: Commit files
