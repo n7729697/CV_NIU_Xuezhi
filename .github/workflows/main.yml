@@ -40,14 +40,14 @@ jobs:
       - name: Move PDF to subfolder path
         run: |
           mkdir -p file
-          mv main.pdf file/CV_NIU_Xuezhi.pdf
+          mv main.pdf files/CV_NIU_Xuezhi.pdf
 
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add file/CV_NIU_Xuezhi.pdf
-          git commit -a -m "update"
+          git add files/CV_NIU_Xuezhi.pdf
+          git commit -a -m "update cv pdf"
           
       - name: Push changes
         uses: ad-m/github-push-action@master
