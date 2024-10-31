@@ -58,15 +58,15 @@ jobs:
           force_with_lease: true
           
       - name: Pushes file to website folder
-        uses: dmnemec/copy_file_to_another_repo_action@main
+        uses: nkoppel/push-files-to-another-repository@v1.1.3
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
           source_file: 'CV_NIU_Xuezhi.pdf'
-          destination_repo: 'n7729697/n7729697.github.io'
-          destination_folder: 'files/'
+          destination-repository: 'n7729697/n7729697.github.io'
+          destination-directory: 'files/CV_NIU_Xuezhi.pdf'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
-          user_email: '59921684+n7729697@users.noreply.github.com' 
-          user_name: 'n7729697'
+          commit-email: '59921684+n7729697@users.noreply.github.com' 
+          destination-username: 'n7729697'
           commit_message: 'update cv pdf'
-          git_server: "github.com"
+          # git_server: "github.com"
