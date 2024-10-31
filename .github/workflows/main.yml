@@ -60,7 +60,7 @@ jobs:
       - name: Pushes file to website folder
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'CV_NIU_Xuezhi.pdf'
           destination_repo: 'n7729697/n7729697.github.io'
