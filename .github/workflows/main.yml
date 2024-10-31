@@ -52,6 +52,6 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: n7729697/n7729697.github.io
           force_with_lease: true
