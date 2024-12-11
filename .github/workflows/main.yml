@@ -57,12 +57,6 @@ jobs:
           repository: 'n7729697/n7729697.github.io'
           force_with_lease: true
       
-      - uses: actions/checkout@v2
-      - name: creates output
-        run:  sh ./build.sh
-      # - name: List workbench files
-      #   run: |
-      #     ls
       - name: Pushes file to website folder
         uses: cpina/github-action-push-to-another-repository@master
         env:
