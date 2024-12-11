@@ -38,33 +38,38 @@ jobs:
             # Add any other packages used in your .tex file
             
       # Prepare the PDF for the target repository's subfolder
-      - name: Move PDF to subfolder path
+      - name: Rename PDF
         run: |
           mkdir -p files
           mv main.pdf CV_NIU_Xuezhi.pdf
-
+      
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add CV_NIU_Xuezhi.pdf
           git commit -a -m "update cv pdf"
-          
+      
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
           repository: 'n7729697/n7729697.github.io'
           force_with_lease: true
-      - name: List workbench files
-        run: |
-          ls
+      - uses: actions/checkout@v2
+      - name: Install mustache (to update the date)
+        run:  apk add ruby && gem install mustache
+      - name: creates output
+        run:  sh ./build.sh
+      # - name: List workbench files
+      #   run: |
+      #     ls
       - name: Pushes file to website folder
         uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
-          source-directory: 'CV_NIU_Xuezhi.pdf'
+          source-directory: /CV_NIU_Xuezhi.pdf
           destination-repository-name: 'n7729697.github.io'
           destination-directory-name: 'files/'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
