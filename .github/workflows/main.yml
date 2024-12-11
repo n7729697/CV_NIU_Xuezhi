@@ -68,7 +68,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
-          source-directory: /CV_NIU_Xuezhi.pdf
+          source-directory: '/CV_NIU_Xuezhi.pdf'
           destination-repository-name: 'n7729697.github.io'
           destination-directory-name: 'files/'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
