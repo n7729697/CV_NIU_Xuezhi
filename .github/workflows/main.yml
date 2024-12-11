@@ -23,7 +23,7 @@ jobs:
         with:
           root_file: main.tex  # Change to the path of your main .tex file
           compiler: xelatex  # Specify xelatex as the compiler
-          extra_packages: |
+          extra_system_packages: |
             tabularx
             titlesec
             geometry
