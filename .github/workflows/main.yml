@@ -63,11 +63,11 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
         with:
-          source-directory: 'files'
+          source-directory: 'files/'
           destination-repository-name: 'n7729697.github.io'
-          destination-directory-name: 'files/'
           # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
           user-email: '59921684+n7729697@users.noreply.github.com' 
           destination-github-username: 'n7729697'
           commit-message: 'update cv pdf'
+          clean: false
           # git_server: "github.com"
