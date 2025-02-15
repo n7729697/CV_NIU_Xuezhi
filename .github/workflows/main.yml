@@ -55,19 +55,17 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
-          repository: 'n7729697/n7729697.github.io'
-          force_with_lease: true
-     
-      - name: Pushes file to website folder
-        uses: cpina/github-action-push-to-another-repository@master
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
-        with:
-          source-directory: 'files/'
-          destination-repository-name: 'n7729697.github.io'
-          # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
-          user-email: '59921684+n7729697@users.noreply.github.com' 
-          destination-github-username: 'n7729697'
-          commit-message: 'update cv pdf'
-          clean: false
-          # git_server: "github.com"
+          branch: ${{ github.head_ref }}
+      
+      # - name: Pushes file to website folder
+      #   uses: cpina/github-action-push-to-another-repository@master
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+      #   with:
+      #     source-directory: 'files/'
+      #     destination-repository-name: 'n7729697.github.io'
+      #     # Primiry email will not be used as the 'from' address for web-based Git operations, e.g., edits and merges. Use <your-id>+<your-username>@users.noreply.github.com instead.
+      #     user-email: '59921684+n7729697@users.noreply.github.com' 
+      #     destination-github-username: 'n7729697'
+      #     commit-message: 'update cv pdf'
+      #     # git_server: "github.com"
