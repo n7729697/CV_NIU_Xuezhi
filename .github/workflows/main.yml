@@ -41,6 +41,7 @@ jobs:
       - name: Rename PDF
         run: |
           mkdir -p files
+          cp main.pdf files/CV_NIU_Xuezhi.pdf
           mv main.pdf CV_NIU_Xuezhi.pdf
       
       - name: Commit files
@@ -56,7 +57,7 @@ jobs:
           github_token: ${{ secrets.PAT_TOKEN }}
           repository: 'n7729697/n7729697.github.io'
           force_with_lease: true
-      
+     
       - name: Pushes file to website folder
         uses: cpina/github-action-push-to-another-repository@master
         env:
