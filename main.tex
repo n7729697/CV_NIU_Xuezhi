@@ -139,9 +139,7 @@
 \begin{document}
 \fontfamily{ptm}\selectfont
 %----------HEADING-----------------
-\AddToShipoutPictureBG{%
-\backgroundlines
-}
+\AddToShipoutPicture*{\backgroundlines}
 
 \parbox{2.6cm}{%
 \includegraphics[width=2.35cm,clip]{uu_logo.png}
@@ -243,12 +241,18 @@
 \vspace{-5mm}
 
 %-----------Skills-----------------
-%\section{\textbf{Technical Skills}}
-% \vspace{-0.4mm}
-%\resumeHeadingSkillStart
-%  \item \hspace{0.5em} MATLAB/Simulink, Python, C/C++, ROS/ROS2, Docker, Conda, Git, Inkscape, \LaTeX, Gazebo, Isaac Sim, STM32, ESP32, Jetson, Raspberry Pi, UART, SPI, I2C, TCP/IP, SolidWorks, AutoCAD.
-%\resumeHeadingSkillEnd
-%\vspace{-5mm}
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+
+ \hspace{0.5em} MATLAB/Simulink, Python, C/C++, R, ROS/ROS2, MoveIt, PyTorch, OpenCV, Gazebo, Isaac Sim, Gym/Gymnasium, URDF/SDF/Xacro, RRT*, PRM, A*, Dijkstra, PID, MPC, adaptive, H$^\infty$, HJB, EKF, UKF, RL (PPO, SAC, DQN, DDPG), RGB-D/LiDAR perception, SLAM, Optical/Stereo cameras, IMU, Encoder, Strain Gauge, Force/Torque Sensor, Fluid/Air Pressure Sensor, motor (BLDC, PMSM, stepper, servo, H-bridge, FOC), STM32, ESP32, Jetson, Raspberry Pi, NXP LPC, Zephyr, FreeRTOS, Keil, UART, SPI, I$^2$C, TCP/IP, Modbus, DDS, MQTT, SolidWorks, Solid Edge, AutoCAD, Autodesk EAGLE, KLayout, COMSOL, LS-DYNA, 3D prototyping, CNC machining, lithography, CVD, PVD, etching (RIE/DRIE), doping, SEM/TEM, Inkscape, \LaTeX.
+ % \resumeHeadingSkillStart
+ % \item \textbf{Control}: A*, Dijkstra, RRT*, PRM, PID, MPC, H$\infty$, HJB, EKF, UKF, RL based (PPO, SAC, DQN, DDPG), motors (BLDC, PMSM, stepper, servo, FOC, H-bridge)
+ % \item \textbf{Mechanical}: SolidWorks, Solid Edge, AutoCAD, 3D prototyping, CNC machining, statics/kinematics/dynamics (MATLAB/Simscape), material selection (COMSOL, ANSYS), thermal/fluid analysis (LS-DYNA, Bladed), microfabrication (lithography, CVD, PVD, etching, doping, SEM/TEM)
+ % \item \textbf{Electrical}: Zephyr, FreeRTOS, Keil, UART, SPI, I$^2$C, TCP/IP, Modbus, DDS, MQTT, robot-to-cloud (5G), STM32, ESP32, NVIDIA Jetson, Raspberry Pi, sensing (optical camera, RGB-D/LiDAR, IMU, encoder, strain gauge, force/torque, fluid/air pressure), Autodesk EAGLE, KLayout, Op-Amp, MOSFET, EMI/EMC
+ % \item \textbf{Software}: MATLAB, Python, C/C++, R \& RStudio, ROS/ROS2, MoveIt, Cuda, PyTorch, OpenCV, URDF/SDF/Xacro, Gym/Gymnasium, Gazebo, Isaac Sim, Carla, Docker, Conda, Git, \LaTeX, Inkscape
+ % \item \textbf{Others}: SIL/HIL/HITL, IEC/ISO compliance, risk assessment, Agile/Scrum, milestone planning
+% \resumeHeadingSkillEnd
+\vspace{-5mm}
 
 %-------------------------------------------
 \end{document}
