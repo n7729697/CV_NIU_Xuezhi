@@ -24,7 +24,7 @@ jobs:
           root_file: main.tex  # Change to the path of your main .tex file
           compiler: xelatex  # Specify xelatex as the compiler
           pre_compile: |
-            tlmgr install tabularx titlesec geometry enumitem hyperref fancyhdr fontawesome5 multicol fontenc academicons multirow
+            tlmgr install titlesec geometry enumitem hyperref fancyhdr fontawesome5 academicons multirow
             
       # Prepare the PDF for the target repository's subfolder
       - name: Rename PDF
