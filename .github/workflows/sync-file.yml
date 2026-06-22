@@ -15,6 +15,12 @@ on:
 
   workflow_dispatch:
 
+# Only one PDF build for the same branch may run at a time.
+# A newer push cancels an older build.
+concurrency:
+  group: build-latex-pdf-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -25,6 +31,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
@@ -38,14 +46,25 @@ jobs:
           mkdir -p files
           cp main.pdf files/CV_NIU_Xuezhi.pdf
 
-      # Pull requests should compile the document but should not modify
-      # either the pull-request branch or the main branch.
       - name: Commit generated PDF
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Verify that main has not changed since this workflow started.
+          git fetch origin main
+
+          REMOTE_SHA="$(git rev-parse origin/main)"
+
+          if [ "$REMOTE_SHA" != "$GITHUB_SHA" ]; then
+            echo "Remote main advanced while this workflow was running."
+            echo "Current workflow source: $GITHUB_SHA"
+            echo "Current remote main:    $REMOTE_SHA"
+            echo "Skipping publication of a potentially outdated PDF."
+            exit 0
+          fi
 
           git add files/CV_NIU_Xuezhi.pdf
 
@@ -55,7 +74,20 @@ jobs:
           fi
 
           git commit -m "Update generated CV PDF [skip ci]"
-          git push
+
+          # A push can still occur between the revision check and this command.
+          if ! git push origin HEAD:main; then
+            git fetch origin main
+
+            if git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+              echo "Remote main advanced during the final push."
+              echo "A newer workflow run will publish the corresponding PDF."
+              exit 0
+            fi
+
+            echo "Push failed for a reason other than a normal branch update."
+            exit 1
+          fi
      
       # - name: Pushes file to website folder
       #   uses: cpina/github-action-push-to-another-repository@master
