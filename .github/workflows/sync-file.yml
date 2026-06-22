@@ -3,49 +3,60 @@ name: Build LaTeX PDF
 on:
   push:
     branches:
-      - main  # Triggers on pushes to the main branch
+      - main
+    paths-ignore:
+      - files/CV_NIU_Xuezhi.pdf
+
   pull_request:
     branches:
-      - main  # Triggers on pull requests to the main branch
+      - main
+    paths-ignore:
+      - files/CV_NIU_Xuezhi.pdf
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build-pdf:
-    permissions: write-all
     runs-on: ubuntu-latest
+
     steps:
-      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
 
-      # Set up TeX Live with additional packages
-      - name: Set up TeX Live
-        uses: xu-cheng/latex-action@3.2.0
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
         with:
-          root_file: main.tex  # Change to the path of your main .tex file
-          compiler: xelatex  # Specify xelatex as the compiler
-          pre_compile: |
-            tlmgr install titlesec geometry enumitem hyperref fancyhdr fontawesome5 academicons multirow
-            
-      # Prepare the PDF for the target repository's subfolder
-      - name: Rename PDF
+          root_file: main.tex
+          texlive_version: 2026
+          latexmk_use_xelatex: true
+
+      - name: Prepare generated PDF
         run: |
           mkdir -p files
           cp main.pdf files/CV_NIU_Xuezhi.pdf
-          mv main.pdf CV_NIU_Xuezhi.pdf
-      
-      - name: Commit files
+
+      # Pull requests should compile the document but should not modify
+      # either the pull-request branch or the main branch.
+      - name: Commit generated PDF
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add CV_NIU_Xuezhi.pdf
-          git commit -a -m "update cv pdf"
-      
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT_TOKEN }}
-          branch: ${{ github.head_ref }}
-      
+          git config --local user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add files/CV_NIU_Xuezhi.pdf
+
+          if git diff --cached --quiet; then
+            echo "Generated PDF is unchanged."
+            exit 0
+          fi
+
+          git commit -m "Update generated CV PDF [skip ci]"
+          git push
+     
       # - name: Pushes file to website folder
       #   uses: cpina/github-action-push-to-another-repository@master
       #   env:
